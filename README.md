@@ -14,7 +14,14 @@ Run the following artisan command in the root of your Laravel project.
 ```text
 composer require fokosun/artisan-chain-commands 
 ```
-
+Lastly, add Artisan Chain Commands to the list of providers in `config/app` under providers:
+```text
+'providers' => ServiceProvider::defaultProviders()->merge([
+   ...
+    \Fokosun\ArtisanChainCommands\Providers\ArtisanChainCommandsProvider::class,
+    ...
+])->toArray(),
+```
 ## How to use
 You can chain multiple artisan commands with ease but there are a few commands that are not supported. See list below.
 
@@ -38,6 +45,14 @@ You can chain multiple artisan commands with ease but there are a few commands t
 ```
 
 Artisan chain command will ignore these commands for the reasons outlined in the table above.
+
+## Shorthand commands
+Artisan chain commands also ship with a few shorthand commands which are essentially a chain of commonly used commands to aid development. An example are the `'config:clear', 'cache:clear', 'view:clear'` commands combination. These can be run with just one single shorthand command. See list below:
+```text
+'clear:ccv' => ['config:clear', 'cache:clear', 'view:clear'],
+'clear:*' => ['config:clear', 'cache:clear', 'view:clear','event:clear', 'optimize:clear', 'queue:clear'],
+'db:rms' => ['migrate:refresh', 'migrate', 'db:seed'],
+```
 
 ## Contributing
 This is opensource and contributions are highly welcome.
