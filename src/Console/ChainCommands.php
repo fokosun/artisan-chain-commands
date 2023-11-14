@@ -107,8 +107,8 @@ class ChainCommands extends Command
             $this->table(['Command', '', 'Status', 'Output'], $rows);
         }
 
-        $this->info("Display a list of commands that are not  supported.");
         if ($showIgnoredList) {
+            $this->info("Display a list of commands that are not  supported.");
             $rows = [];
             foreach($this->toBeIgnored as $key => $row) {
                 $rows[] = [$key, $row];
